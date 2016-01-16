@@ -52,11 +52,18 @@ class ListResponseDefault
 end
 
 class List
-  def initialize question = nil, elements = [], renderer = nil, responseRenderer = nil
+  def initialize question = nil, elements = [], default = 0, renderer = nil, responseRenderer = nil
     @elements = elements
     @question = question
     @pos = 0
     @prompt = ""
+
+    if default.is_a? String and @elements.include? default
+      @pos = @elements.index(default)
+    elsif default.is_a? Integer and default < @elements.size
+      @pos = default
+    end
+
     @renderer = renderer = ListDefault.new( Inquirer::Style::Default )
     @responseRenderer = responseRenderer = ListResponseDefault.new()
   end
@@ -116,7 +123,7 @@ class List
   end
 
   def self.ask question = nil, elements = [], opts = {}
-    l = List.new question, elements, opts[:renderer], opts[:rendererResponse]
+    l = List.new question, elements, opts[:default], opts[:renderer], opts[:rendererResponse]
     l.run opts.fetch(:clear, true), opts.fetch(:response, true)
   end
 

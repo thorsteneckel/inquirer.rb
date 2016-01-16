@@ -65,4 +65,25 @@ describe List do
     IOHelper.output.must_equal "select: \e[36mthree\e[0m\n"
   end
 
+  it "selects and fails default correctly" do
+    List.ask "select", ["one","two","three"], default: 1, clear: false, response: false
+    IOHelper.output.must_equal "select:\n  one\n\e[36m‣\e[0m \e[36mtwo\e[0m\n  three\n"
+
+    IOHelper.output = ""
+
+    List.ask "select", ["one","two","three"], default: 'three', clear: false, response: false
+    IOHelper.output.must_equal "select:\n  one\n  two\n\e[36m‣\e[0m \e[36mthree\e[0m\n"
+
+    IOHelper.output = ""
+
+    List.ask "select", ["one","two","three"], default: 3, clear: false, response: false
+    IOHelper.output.must_equal "select:\n\e[36m‣\e[0m \e[36mone\e[0m\n  two\n  three\n"
+
+    IOHelper.output = ""
+
+    List.ask "select", ["one","two","three"], default: 'four', clear: false, response: false
+    IOHelper.output.must_equal "select:\n\e[36m‣\e[0m \e[36mone\e[0m\n  two\n  three\n"
+
+  end
+
 end

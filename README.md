@@ -8,12 +8,14 @@ Interactive user prompts on CLI for ruby.
 
 ### List
 
+Takes optional `default` property (`index` or `value`).
+
 ```ruby
 idx = Ask.list "Look behind you...", [
   "a three-headed monkey!",
   "a pink pony",
   "Godzilla"
-]
+], default: "a pink pony"
 # idx is the selected index
 ```
 
