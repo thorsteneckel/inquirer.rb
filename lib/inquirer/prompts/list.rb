@@ -58,9 +58,9 @@ class List
     @pos = 0
     @prompt = ""
 
-    if default.is_a? String and @elements.include? default
+    if default.is_a?(String) && @elements.include?(default)
       @pos = @elements.index(default)
-    elsif default.is_a? Integer and default < @elements.size
+    elsif default.is_a?(Integer) && default < @elements.size
       @pos = default
     end
 
