@@ -11,7 +11,7 @@ module Inquirer::Style
 
   Default = Style.new(
     "‣",
-    "⬢",
-    "⬡"
+    "◉",
+    "◯"
   )
 end
