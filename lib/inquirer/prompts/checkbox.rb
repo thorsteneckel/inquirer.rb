@@ -38,7 +38,7 @@ class CheckboxDefault
   include CheckboxRenderer
   C = Term::ANSIColor
   def initialize( style )
-    @heading      = "%s:\n"
+    @heading      = "%s\n"
     @footer       = "%s\n"
     @item         = "%s\n"
     @active_item  = "%s" + "\n"
@@ -53,7 +53,7 @@ class CheckboxResponseDefault
   include CheckboxRenderer
   C = Term::ANSIColor
   def initialize( style = nil )
-    @heading = "%s: "
+    @heading = "%s "
     @response = C.cyan("%s") + "\n"
   end
 end

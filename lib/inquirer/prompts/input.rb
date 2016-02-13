@@ -26,7 +26,7 @@ class InputDefault
   include InputRenderer
   C = Term::ANSIColor
   def initialize( style )
-    @heading = "%s: "
+    @heading = "%s "
     @default = "(%s) "
     @value = "%s"
     @footer = "%s"
@@ -38,7 +38,7 @@ class InputResponseDefault
   include InputRenderer
   C = Term::ANSIColor
   def initialize( style = nil )
-    @heading = "%s: "
+    @heading = "%s "
     @response = C.cyan("%s") + "\n"
   end
 end

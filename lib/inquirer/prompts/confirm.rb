@@ -28,7 +28,7 @@ class ConfirmDefault
   include ConfirmRenderer
   C = Term::ANSIColor
   def initialize( style )
-    @heading = "%s: "
+    @heading = "%s "
     @default = "(%s/%s)"
     @footer = "%s"
   end
@@ -39,7 +39,7 @@ class ConfirmResponseDefault
   include ConfirmRenderer
   C = Term::ANSIColor
   def initialize( style = nil )
-    @heading = "%s: "
+    @heading = "%s "
     @response = C.cyan("%s") + "\n"
   end
 end
