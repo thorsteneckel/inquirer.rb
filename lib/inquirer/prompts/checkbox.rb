@@ -109,7 +109,11 @@ class Checkbox
     # hides the cursor while prompting
     IOHelper.without_cursor do
       # render the
+      question_backup = @question
+      @question      += " (Press <space> to select)"
       IOHelper.render( paginator.paginate(update_prompt, @pos) )
+      @question = question_backup
+
       # loop through user input
       IOHelper.read_key_while do |key|
 
