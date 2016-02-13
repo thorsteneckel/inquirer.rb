@@ -43,7 +43,7 @@ class CheckboxDefault
     @item         = "%s\n"
     @active_item  = "%s" + "\n"
     @selector     = C.cyan style.selector
-    @checkbox_on  = C.cyan style.checkbox_on
+    @checkbox_on  = C.green style.checkbox_on
     @checkbox_off = style.checkbox_off
   end
 end
