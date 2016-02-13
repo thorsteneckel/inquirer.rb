@@ -1,4 +1,5 @@
 require 'term/ansicolor'
+require 'inquirer/utils/paginator'
 require 'inquirer/style'
 
 # Base rendering for simple lists
@@ -102,16 +103,20 @@ class Checkbox
     # finish if there's nothing to do
     return @active if Array(@elements).empty?
 
+    # initialize paginator
+    paginator = Paginator.new
+
     # hides the cursor while prompting
     IOHelper.without_cursor do
       # render the
-      IOHelper.render( update_prompt )
+      IOHelper.render( paginator.paginate(update_prompt, @pos) )
       # loop through user input
       IOHelper.read_key_while do |key|
+
         @pos = (@pos - 1) % @elements.length if key == "up"
         @pos = (@pos + 1) % @elements.length if key == "down"
         @active[@pos] = !@active[@pos] if key == "space"
-        IOHelper.rerender( update_prompt )
+        IOHelper.rerender( paginator.paginate(update_prompt, @pos) )
         # we are done if the user hits return
         key != "return"
       end
