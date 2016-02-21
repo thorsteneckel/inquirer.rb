@@ -1,5 +1,25 @@
 require 'io/console'
 
+# inspired http://apidock.com/rails/ActionView/Helpers/TextHelper/word_wrap
+class String
+  def wrap(line_width = 80)
+
+    keep_trailing_newline = self[-1, 1] == "\n"
+
+    result = self.split("\n").collect! do |line|
+      line.length > line_width ? line.gsub(/(.{1,#{line_width}})(\s+|$)/, "\\1\n") : line
+    end * "\n"
+
+    if keep_trailing_newline
+      result += "\n"
+    else
+      result.chomp!
+    end
+
+    result
+  end
+end
+
 module IOHelper
   extend self
 
@@ -83,8 +103,9 @@ module IOHelper
 
   # Render a text to the prompt
   def render prompt
-    @rendered = prompt
-    print prompt
+    h,w = IOHelper.winsize
+    @rendered = prompt.wrap(w)
+    print @rendered
   end
 
   # Clear the prompt and render the update

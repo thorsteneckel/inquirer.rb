@@ -39,7 +39,7 @@ class InputResponseDefault
   C = Term::ANSIColor
   def initialize( style = nil )
     @heading = "%s "
-    @response = C.cyan("%s") + "\n"
+    @response = C.cyan("%s") + IOHelper.clear_line + "\n"
   end
 end
 
@@ -70,7 +70,7 @@ class Input
   end
 
   def update_cursor
-    print IOHelper.char_left * @pos
+    print IOHelper.char_left * @pos + IOHelper.clear_line
   end
 
   # Run the list selection, wait for the user to select an item and return
