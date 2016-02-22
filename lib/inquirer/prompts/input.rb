@@ -70,7 +70,7 @@ class Input
   end
 
   def update_cursor
-    print IOHelper.char_left * @pos + IOHelper.clear_line
+    print IOHelper.char_left * @pos
   end
 
   # Run the list selection, wait for the user to select an item and return
@@ -92,7 +92,7 @@ class Input
 
       case raw
       when "backspace"
-        @value = @value.chop
+        @value[ @value.size - @pos - 1 ] = ''
         IOHelper.rerender( update_prompt )
         update_cursor
       when "left"
