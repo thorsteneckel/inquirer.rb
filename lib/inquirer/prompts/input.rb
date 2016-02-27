@@ -92,9 +92,14 @@ class Input
 
       case raw
       when "backspace"
-        @value[ @value.size - @pos - 1 ] = ''
-        IOHelper.rerender( update_prompt )
-        update_cursor
+
+        index = @value.size - @pos - 1
+
+        if index >= 0
+          @value[index] = ''
+          IOHelper.rerender( update_prompt )
+          update_cursor
+        end
       when "left"
         if @pos < @value.length
           @pos = @pos + 1
